@@ -17,14 +17,7 @@ class Lecture (models.Model) :
     name = models.CharField(max_length=20)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
 
-class User(models.Model) :
-    userid = models.CharField(max_length=20, primary_key=True)
-    university = models.ForeignKey(University, on_delete=models.CASCADE)
-    password = models.CharField(max_length=20)
-    student_number = models.CharField(max_length=20)
-
 class LectureRatingBoard(models.Model) :
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     content = models.TextField()
