@@ -1,7 +1,9 @@
 
 
-{{request.session.username}}
-
+{%if request.user.is_authenticated %}
+{{request.user}}
+<a href="{% url 'logout' %}">로그아웃</a>
+{%else%}
 <h1>로그인</h1>
 
 <form method="POST" action="{% url 'login' %}"> 
@@ -18,3 +20,5 @@
 
 
 <a href="{% url 'signup' %}">회원가입</a>
+
+{% endif %}
