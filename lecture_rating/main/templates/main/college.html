@@ -1,0 +1,51 @@
+{% extends 'layout/mainnav.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="session">
+    <div class="container">
+        {% if colleges %}
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">college</th>
+                    <th scope="col">select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in colleges %}
+                <tr>
+                    <th scope="row">{{ college.pk }}</th>
+                    <td>{{college.name}}</td>
+                    <td>
+                        <form action="{% url 'choose_college' %}" method="POST">
+                            <input type="hidden" value="{{college.name}}" name="college">
+                            <button type="submit" class="btn btn-link">선택</button></form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <br>
+        <h1>다시 검색해주세요.</h1>
+
+        <form action="{% url 'find_college' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group input-group-newsletter">
+                <input type="text" class="form-control" placeholder="Enter college" aria-label="Enter college"
+                    aria-describedby="basic-addon" name="college">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">check!</button>
+                </div>
+            </div>
+        </form>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
