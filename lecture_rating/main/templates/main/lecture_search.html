@@ -9,17 +9,15 @@
       <div class="input-field first-wrap">
         <div class="input-select">
           <select data-trigger="" name="search_type">
-            <option placeholder="">Category</option>
+            <option selected disabled hidden placeholder="">Category</option>
             <option>Lecture Title</option>
             <option>Professor</option>
-            <option>Content</option>
             <option>Lecture Code</option>
-            <option>User</option>
           </select>
         </div>
       </div>
       <div class="input-field second-wrap">
-        <input id="search" type="text" placeholder="Enter Keywords?" name="content" />
+        <input name="search_content" id="search" type="text" placeholder="Enter Keywords?"  />
       </div>
       <div class="input-field third-wrap">
         <button class="btn-search" type="submit">
@@ -51,11 +49,11 @@
                   <div>
                     <a href="#">
                       <select class="stars">
-                        <option {% if numbering == 1 %} selected {% endif %} value="1">1</option>
-                        <option {% if numbering == 2 %} selected {% endif %} value="2">2</option>
-                        <option {% if numbering == 3 %} selected {% endif %} value="3">3</option>
-                        <option {% if numbering == 4 %} selected {% endif %} value="4">4</option>
-                        <option {% if numbering == 5 %} selected {% endif %} value="5">5</option>
+                        <option {% if post.stars == 1 %} selected {% endif %} value="1">1</option>
+                        <option {% if post.stars == 2 %} selected {% endif %} value="2">2</option>
+                        <option {% if post.stars == 3 %} selected {% endif %} value="3">3</option>
+                        <option {% if post.stars == 4 %} selected {% endif %} value="4">4</option>
+                        <option {% if post.stars == 5 %} selected {% endif %} value="5">5</option>
                       </select>
                     </a>
                   </div>
@@ -77,7 +75,7 @@
                 </div>
                 <p>{{post.content}}</p>
                 <div class="post-btn">
-                  <a href="#" class="primary-btn text-uppercase">Read More</a>
+                  <a href="{% url 'postdetail' post.id  %}" class="primary-btn text-uppercase">Read More</a>
                 </div>
               </div>
               {% endfor %}
@@ -88,7 +86,9 @@
       </div>
     </section>
     {% else %}
-    dsa
+    <div class="container">
+      <h1>검색 결과가 없어요 ㅠㅠ</h1>
+    </div>
 {%endif%}
 
 

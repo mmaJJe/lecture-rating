@@ -27,48 +27,50 @@ def find_college(request) :
 def search_lecture (request) :
 
     list_lecture = []
-    type_name = request.POST.get("type")
+    type_name = request.POST.get("search_type")
     search_content = request.POST.get("search_content")
     univer = request.session.get('college')
     college = University.objects.get(name=univer)
+    print(search_content)
 
     # 강의 제목으로 검색했을 때 강의 맞는 강의 제목을 찾고 그에 해당하는 강의평가 게시물 검색
     if type_name == "Lecture Title" :
-        results = LectureRatingBoard.objects.filter(
-            lecture = Subquery(Lecture.objects.filter(name__icontains=search_content, university=college)))
+        # results = LectureRatingBoard.objects.filter
+        lecture = Lecture.objects.filter(name__icontains=search_content, university=college)
         
-        # lectures = Lecture.objects.filter(name__icontains=search_content, university=college)
-        # for lecture in lectures :
-        #     results = LectureRatingBoard.objects.filter(lecture = lecture)
+        results = []
+        for lec in lecture :
+            results.append(get_object_or_404(LectureRatingBoard, lecture=lec))
 
 
     # 강의자, 교수님으로 찾을 때 해당 교수님의 data를 먼저 찾고, 교수님이 해당하는 강의를 검색 후에 강의평가 게시물 확인
     elif type_name == "Professor" :
-        results = LectureRatingBoard.objects.filter(
-            lecture = Subquery(Lectrue.objects.filter(
-                professor= Subquery(Professor.objects.filter(name__icontains=search_content, university = college)))))
+        lecture = Lecture.objects.filter(
+            professor = Subquery(Professor.objects.filter(name__icontains=search_content, university = college).values('id')[:1]))
 
-        # professor = Porfessor.objects.filter(name__icontains=search_content, university=college)
-        # lectures = Lecture.objects.filter(professor=professor, university=college)
-        # for lecture in lectures :
-        #     results = LectureRatingBoard.objects.filter(lecture = lecture)
 
-    # 강의 평가 내용으로 찾기
-    elif type_name == "Content" :
-        results = LectureRatingBoard.objects.filter(content__icontains=search_content, university=college)
+        results = []
+        for lec in lecture :
+            results.append(get_object_or_404(LectureRatingBoard, lecture=lec))
+
     # 강의 코드 즉, 강의 자체 코드에 대해서 검색
     elif type_name == "Lecture Code" :
-        results = LectureRatingBoard.objects.filter(lecture = Subquery(Lecture.objects.filter(lecture_id=search_content, university=college)))
+        results = LectureRatingBoard.objects.filter(lecture = Subquery(Lecture.objects.filter(lecture_id=search_content, university=college).values('id')[:1]))
         
         
         # lectures = Lecture.objects.filter(lecture_id=search_content, university=college)
         # for lecture in lectures :
         #     results = LectureRatingBoard.objects.filter(lecture=lecture)
     
-    elif type_name == "User" :
-        results = LectureRatingBoard.objects.filter(user = Subquery(User.objects.filter(userid=search_content, university=college)))
-    
-    # return render(request)
+    print(results)
+    lec_list = results
+    print(lec_list)
+    paginator = Paginator(lec_list, 3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    context = {'lec_li' : lec_list, 'posts':posts}
+
+    return render(request, "main/lecture_search.html", context)
 
 def search_home(request) :
     lec_list = LectureRatingBoard.objects.all()
