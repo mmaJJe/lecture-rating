@@ -70,7 +70,10 @@ def search_lecture (request) :
     # return render(request)
 
 def search_home(request) :
-    return render(request, "main/lecture_search.html")
+
+    numbers = [2, 4]
+    
+    return render(request, "main/lecture_search.html", {"numbers" : numbers})
 
 def choose_college(request) :
     college = request.POST.get('college')

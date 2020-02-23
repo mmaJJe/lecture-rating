@@ -20,6 +20,8 @@ class Lecture (models.Model) :
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    reco = models.IntegerField(default=0)
+    not_reco = models.IntegerField(default=0)
     def __str__ (self) :
         return self.name
 
@@ -33,5 +35,12 @@ class LectureRatingBoard(models.Model) :
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     content = models.TextField()
+    semester_year = models.DateField(blank=True, null=True)
+    semester = models.CharField(max_length=5, blank=True, null=True)
+    pro_lecturePower = models.IntegerField(default=0)
+    test_level = models.IntegerField(default=0)
+    project = models.IntegerField(default=0)
+    homework = models.IntegerField(default=0)
+
     def __str__(self):
-        return self.title
+        return self.lecture.name
