@@ -12,12 +12,12 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             django_login(request, user)
-            return render(request, "login.html")
+            return render(request, "login/login.html")
         else:
-            error = "다시 시도해주세요!"
-            return render(request, "login.html", { "error" : error})
+            error = "다시 시도해주세요"
+            return render(request, "login/login.html", { "error" : error})
     else:
-        return render(request, "login.html")
+        return render(request, "login/login.html")
 
 
 @csrf_exempt
@@ -29,14 +29,14 @@ def signup(request):
         if form.is_valid() and cpassword == password:
             new_user = User.objects.create_user(**form.cleaned_data)
             django_login(request, new_user)
-            return render(request, "login.html")
+            return render(request, "login/login.html")
         else:
             context = {"msg" : "회원가입 실패"}
-            return render(request, "signup.html", context)
+            return render(request, "login/signup.html", context)
     else:
         form = UserForm()
-        return render(request, "signup.html")
+        return render(request, "login/signup.html")
 
 def logout(request):
     django_logout(request)
-    return render(request, "login.html")
+    return render(request, "login/login.html")
