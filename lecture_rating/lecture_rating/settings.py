@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'login.apps.LoginConfig',
     'postboard.apps.PostboardConfig',
+    'write.apps.WriteConfig',
 ]
 
 MIDDLEWARE = [

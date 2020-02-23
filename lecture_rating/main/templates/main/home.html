@@ -53,10 +53,12 @@
                                 <button class="btn btn-secondary" type="submit">check!</button>
                             </div>
                             </form>
+                            {% if request.user == None %}
                             <br>
-                            <a class="mb-3 link" href="#">로그인</a>
+                            <a class="mb-3 link" href="{% url 'login' %}">로그인</a>
                             <br>
-                            <a class="mb-3 link" href="#">회원가입</a>
+                            <a class="mb-3 link" href="{% url 'signup' %}">회원가입</a>
+                            {% endif %}
                     </div>
                     </div>
                 </div>

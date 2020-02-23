@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.sessions.models import Session
 from .models import University, LectureRatingBoard, Lecture, Professor
@@ -85,3 +86,8 @@ def choose_college(request) :
     request.session['college'] = college
     
     return redirect("search_home")
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> eab2a96b65da238a28c24a86b0378f07d415d786

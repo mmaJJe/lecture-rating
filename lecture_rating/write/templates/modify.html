@@ -1,0 +1,13 @@
+<h1>강의평가수정</h1>
+
+
+<div class="container">
+    <form method ="POST">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <br>
+         <input class="btn btn-dark" type= "submit" value="제출하기"> 
+    </form>
+</div>
