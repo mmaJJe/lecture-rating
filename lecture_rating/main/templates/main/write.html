@@ -1,0 +1,80 @@
+<div class= "container">
+    <form action = "{% url 'create'%}">
+        <h2>평가자아이디</h2>
+        <input type = "text" name="user">
+        <br>
+        <br>
+        <h2>강의</h2>
+        <input type = "text" name="lecture">
+        <br>
+        <br>
+        <h2>제목</h2>
+        <input type = "text" name="title">
+        <br>
+        <br>
+        <h4>평가내용</h4>
+        <textarea cols=100 rows=30 name="content"></textarea>
+        <br>
+        <br>
+        <h2>강의년도</h2>
+        <input type = "text" name="title">
+        <br><br>
+        <h2>강의학기</h2>
+        <input type = "text" name="title">
+        <br><br>
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">교수강의력</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">시험난이도</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">프로젝트난이도</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">숙제난이도</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">별점</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <br><br>
+     
+        <input class="btn btn-dark" type="submit" value="제출하기"></input>
+    </form>
+</div>
