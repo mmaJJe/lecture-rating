@@ -1,4 +1,4 @@
-{% extends 'layouy/mainnav.html' %}
+{% extends 'layout/mainnav.html' %}
 {% load static %}
 {% block content %}
     <div class="s003">
@@ -28,5 +28,13 @@
         </div>
       </form>
     </div>
+    <script src="/static/main/js/extention/choices.js"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
 
+    </script>
 {% endblock %}

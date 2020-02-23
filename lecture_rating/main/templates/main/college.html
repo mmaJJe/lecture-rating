@@ -22,6 +22,7 @@
                     <td>{{college.name}}</td>
                     <td>
                         <form action="{% url 'choose_college' %}" method="POST">
+                            {% csrf_token %}
                             <input type="hidden" value="{{college.name}}" name="college">
                             <button type="submit" class="btn btn-link">선택</button></form>
                     </td>

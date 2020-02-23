@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Coming Soon - Start Bootstrap Theme</title>
+    <title>{% block title %}강의평가{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,19 +26,11 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/static/main/vendor/jquery/jquery.min.js"></script>
     <script src="/static/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="/static/main/css/main.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <script src="/static/main/js/extention/choices.js"></script>
-    <script>
-      const choices = new Choices('[data-trigger]',
-      {
-        searchEnabled: false,
-        itemSelectText: '',
-      });
 
-    </script>
-    <!-- Custom scripts for this template -->
-    <script src="/static/main/js/coming-soon.min.js"></script>
 </head>
 
 <body>
