@@ -16,7 +16,7 @@ def LectureRatingBoard_Post(request):
 
     else:
         form =  LectureRatingBoard_Post()
-        return render(request,)  
+        return render(request, "write/write.html", {"form" : form})  
     
 
 def create(request):
@@ -31,14 +31,14 @@ def create(request):
     
 def home(request):
     lectureRatingBoards=LectureRatingBoard.objects
-    return render(request, 'home.html', {'lectureRatingBoards':lectureRatingBoards})
+    return render(request, 'write/home.html', {'lectureRatingBoards':lectureRatingBoards})
 
 def modify(request):
-    return render(request, 'modify.html')
+    return render(request, 'write/modify.html')
 
 def detail(request,pk):
     lecture_detail = get_object_or_404(LectureRatingBoard,pk=pk)
-    return render(request, 'detail.html', {'lecture_detail':lecture_detail})    
+    return render(request, 'write/detail.html', {'lecture_detail':lecture_detail})    
 
 def update(request, pk):
     lectureRatingBoard = get_object_404(LectureRatingBoard, pk=pk)
@@ -49,7 +49,7 @@ def update(request, pk):
             form.save()
     else:
         form =  LectureRatingBoard_Post()
-        return render(request,)  
+        return render(request, 'write/modify.html')  
 
    
     
