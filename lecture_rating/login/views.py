@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import (authenticate, login as django_login, logout as django_logout )
 from django.contrib.auth.models import User
+from main.models import Profile
 from .forms import UserForm
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,7 +13,10 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             django_login(request, user)
-            return render(request, "login/login.html")
+            datas= Profile.objects.get(user=request.user)
+            college =  datas.university
+            request.session['college'] = college
+            return redirect("search_home")
         else:
             error = "다시 시도해주세요"
             return render(request, "login/login.html", { "error" : error})
@@ -29,14 +33,23 @@ def signup(request):
         if form.is_valid() and cpassword == password:
             new_user = User.objects.create_user(**form.cleaned_data)
             django_login(request, new_user)
-            return render(request, "login/login.html")
+            userdata = Profile()
+            userdata.user = request.user
+            userdata.university = request.POST['university'] # 추가됨
+            userdata.major = request.POST['major'] # 추가됨
+            userdata.admission_year = request.POST['admission_year'] # 추가됨
+            userdata.save() # 추가됨
+            request.session['college'] = request.POST['university']
+            return redirect("search_home")
+
         else:
-            context = {"msg" : "회원가입 실패"}
+            context = {"msg" : "회원가입 실패1" }
             return render(request, "login/signup.html", context)
     else:
+        context = {"msg" : "회원가입 실패2"}
         form = UserForm()
         return render(request, "login/signup.html")
 
 def logout(request):
     django_logout(request)
-    return render(request, "login/login.html")
+    return render(request, 'main/home.html')
