@@ -5,9 +5,9 @@ from . form import LectureRatingBoard_Post
 
 # Create your views here.
 def write(request):
-    return render(request, 'write.html')
+    return render(request, 'write/write.html')
 
-def LectureRatingBoard_Post(request):
+def LectureRatingBoard_Post2(request):
 
     if request.method =='POST':
         form = LectureRatingBoard_Post(request.POST)
