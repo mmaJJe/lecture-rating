@@ -6,8 +6,10 @@ from django.db.models import Subquery, OuterRef
 
 # 맨 처음 메인화면 띄우기
 def home (request) :
+    if request.GET.get('college_del') :
+        del request.session['college']
     if request.session.get('college') :
-        return redirect("search_lecture")
+        return redirect("search_home")
 
     return render(request, 'main/home.html')
 
@@ -37,6 +39,8 @@ def search_lecture (request) :
         # lectures = Lecture.objects.filter(name__icontains=search_content, university=college)
         # for lecture in lectures :
         #     results = LectureRatingBoard.objects.filter(lecture = lecture)
+
+
     # 강의자, 교수님으로 찾을 때 해당 교수님의 data를 먼저 찾고, 교수님이 해당하는 강의를 검색 후에 강의평가 게시물 확인
     elif type_name == "Professor" :
         results = LectureRatingBoard.objects.filter(
@@ -59,6 +63,9 @@ def search_lecture (request) :
         # lectures = Lecture.objects.filter(lecture_id=search_content, university=college)
         # for lecture in lectures :
         #     results = LectureRatingBoard.objects.filter(lecture=lecture)
+    
+    elif type_name == "User" :
+        results = LectureRatingBoard.objects.filter(user = Subquery(User.objects.filter(userid=search_content, university=college)))
     
     # return render(request)
 
