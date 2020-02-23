@@ -1,0 +1,6 @@
+{% for lecture in lectureRatingBoards.all%}
+<h1>{{lecture.user}}</h1> 
+<h1>{{lecture.lecture}}</h1> 
+<h1>{{lecture.title}}</h1> 
+<h1>{{lecture.content}} <a href="{%url 'detail' lecture.id %}">상세보기</a></h1>  
+{%endfor%}    

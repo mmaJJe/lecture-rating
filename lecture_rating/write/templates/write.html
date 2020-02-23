@@ -1,0 +1,23 @@
+<h1>강의평가작성</h1>
+
+<div class= "container">
+    <form action = "{% url 'create'%}">
+        <h2>평가자아이디</h2>
+        <input type = "text" name="user">
+        <br>
+        <br>
+        <h2>강의</h2>
+        <input type = "text" name="lecture">
+        <br>
+        <br>
+        <h2>제목</h2>
+        <input type = "text" name="title">
+        <br>
+        <br>
+        <h4>평가내용</h4>
+        <textarea cols=100 rows=30 name="content"></textarea>
+        <br>
+        <br>
+        <input class="btn btn-dark" type="submit" value="제출하기"></input>
+    </form>
+</div>
