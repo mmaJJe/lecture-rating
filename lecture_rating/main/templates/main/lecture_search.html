@@ -38,74 +38,76 @@
 <!-- Start Post Silder Area -->
 
 <br>
-
-<section>
-  <div class="container box_1170">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="">
-
-          {% for numbering in numbers %}
-          <div class="post-box mb-30">
-            <div class="d-flex">
-              <div>
-                <a href="#">
-                  <select class="stars">
-                    <option {% if numbering == 1 %} selected {% endif %} value="1">1</option>
-                    <option {% if numbering == 2 %} selected {% endif %} value="2">2</option>
-                    <option {% if numbering == 3 %} selected {% endif %} value="3">3</option>
-                    <option {% if numbering == 4 %} selected {% endif %} value="4">4</option>
-                    <option {% if numbering == 5 %} selected {% endif %} value="5">5</option>
-                  </select>
-                </a>
-              </div>
-              <div class="post-meta">
-                <div class="meta-head">
-                  <a href="#">Marvel Maison</a>
+{% if posts %}
+    
+    <section>
+      <div class="container box_1170">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="">
+              {% for post in posts %}
+              <div class="post-box mb-30">
+                <div class="d-flex">
+                  <div>
+                    <a href="#">
+                      <select class="stars">
+                        <option {% if numbering == 1 %} selected {% endif %} value="1">1</option>
+                        <option {% if numbering == 2 %} selected {% endif %} value="2">2</option>
+                        <option {% if numbering == 3 %} selected {% endif %} value="3">3</option>
+                        <option {% if numbering == 4 %} selected {% endif %} value="4">4</option>
+                        <option {% if numbering == 5 %} selected {% endif %} value="5">5</option>
+                      </select>
+                    </a>
+                  </div>
+                  <div class="post-meta">
+                    <div class="meta-head">
+                      <a href="{% url 'postdetail' post.id  %}">{{post.lecture.name}}</a>
+                    </div>
+                    <div class="meta-details">
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <span class="lnr lnr-calendar-full"></span>
+                            {{post.lecture.professor.name}}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class="meta-details">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        <span class="lnr lnr-calendar-full"></span>
-                        13th Oct, 2018
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="lnr lnr-picture"></span>
-                        Image Post
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="lnr lnr-coffee-cup"></span>
-                        Food & Travel
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="lnr lnr-bubble"></span>
-                        03 Comments
-                      </a>
-                    </li>
-                  </ul>
+                <p>{{post.content}}</p>
+                <div class="post-btn">
+                  <a href="#" class="primary-btn text-uppercase">Read More</a>
                 </div>
               </div>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-            <div class="post-btn">
-              <a href="#" class="primary-btn text-uppercase">Read More</a>
+              {% endfor %}
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
-    </div>
+      </div>
+    </section>
+    {% else %}
+    dsa
+{%endif%}
+
+
+<div class='container'>
+    {% if posts.has_previous %}
+    <a href='?page=1'>First</a>
+    <a href='?page={{posts.previous_page_number}}'>Previous</a>
+    {% endif %}
+
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+
+    {% if posts.has_next %}
+    <a href='?page={{posts.next_page_number}}'>Next</a>
+    <a href='?page={{posts.paginator.num_pages}}'>Last</a>
+    {% endif %}
   </div>
-  </div>
-</section>
+
 <!-- Start Post Silder Area -->
 <script src="/static/main/js/extention/choices.js"></script>
 <script>
@@ -118,6 +120,6 @@
 </script>
 
 <!-- scripts stars -->
-<script type="text/javascript"> $(function() { $('.stars').barrating({ theme: 'fontawesome-stars' }); }); </script>
+<script type="text/javascript"> $(function() { $('.stars').barrating({ theme: 'fontawesome-stars', readonly: true }); }); </script>
 
 {% endblock %}

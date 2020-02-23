@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.sessions.models import Session
 from .models import University, LectureRatingBoard, Lecture, Professor
 from django.db.models import Subquery, OuterRef
+from django.core.paginator import Paginator
 # Create your views here.
 
 # 맨 처음 메인화면 띄우기
@@ -70,10 +71,12 @@ def search_lecture (request) :
     # return render(request)
 
 def search_home(request) :
-
-    numbers = [2, 4]
-    
-    return render(request, "main/lecture_search.html", {"numbers" : numbers})
+    lec_list = LectureRatingBoard.objects.all()
+    paginator = Paginator(lec_list, 3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    context= {'lec_li':lec_list, 'posts':posts,}
+    return render(request, "main/lecture_search.html", context)
 
 def choose_college(request) :
     college = request.POST.get('college')

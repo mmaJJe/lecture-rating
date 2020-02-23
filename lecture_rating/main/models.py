@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 import random
 import string
@@ -25,13 +26,13 @@ class Lecture (models.Model) :
     def __str__ (self) :
         return self.name
 
-class User(models.Model) :
-    userid = models.CharField(max_length=20, primary_key=True)
-    university = models.ForeignKey(University, on_delete=models.CASCADE)
-    password = models.CharField(max_length=20)
-    student_number = models.CharField(max_length=20)
+# class User(settings.AUTH_USER_MODEL) :
+#     admission = models.DateField(blank=True, null=True)
+#     university = models.ForeignKey(University, on_delete=models.CASCADE)
+#     major = models.CharField(blank=True)
 
 class LectureRatingBoard(models.Model) :
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     content = models.TextField()
@@ -41,6 +42,7 @@ class LectureRatingBoard(models.Model) :
     test_level = models.IntegerField(default=0)
     project = models.IntegerField(default=0)
     homework = models.IntegerField(default=0)
+    stars = models.IntegerField(default=0)
 
     def __str__(self):
         return self.lecture.name
