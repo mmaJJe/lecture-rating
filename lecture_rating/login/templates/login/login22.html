@@ -1,0 +1,32 @@
+{% extends 'login/base.html' %}
+{% block content %}
+
+{%if request.user.is_authenticated %}
+{{request.user}}
+<a href="{% url 'logout' %}">로그아웃</a>
+{%else%}
+
+<div class="container">
+    <div class="text-center">
+        <h1>로그인</h1>
+    </div>
+    <div class="mx-auto" style="width: 200px;">
+        <div class="container">
+
+            <form method="POST" action="{% url 'login' %}"> 
+                <div class="mx-auto">
+                    <input type="text" name="username" placeholder="아이디">
+                    <input type="password" name="password" placeholder="비밀번호">
+                </div>
+                <button type="submit">로그인</button>
+            </form>
+            {{error}}
+        </div>
+        <a href="{% url 'signup' %}">회원가입</a>
+    </div>
+    
+    
+</div>
+    
+{% endif %}
+{% endblock %}
