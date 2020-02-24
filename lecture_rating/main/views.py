@@ -90,11 +90,17 @@ def write(request):
     return render(request,"main/write.html")
 
 def create(request):
-    user = User.objects.get(userid = request.GET['user'])
-    lecture = Lecture.objects.get(name = request.GET['lecture'])
+    # user = User.objects.get(userid = request.GET['user'])
+    # lecture = Lecture.objects.get(name = request.GET['lecture'])
     lectureRatingBoard = LectureRatingBoard()
-    lectureRatingBoard.user = user
+    lectureRatingBoard.user = request.user
     lectureRatingBoard.lecture = lecture
     lectureRatingBoard.tilte =  request.GET['title']
     lectureRatingBoard.content =  request.GET['content']
-    lectureRatingBoard.save()   
+    lectureRatingBoard.pro_lecturePower = request.GET['pro_lecturePower']
+    lectureRatingBoard.test_level = request.GET['test_level']
+    lectureRatingBoard.project = request.GET['project']
+    lectureRatingBoard.homework= request.GET['homework']
+    lectureRatingBoard.stars = request.GET['stars']
+    lectureRatingBoard.save()
+    return redirect('search_home')
