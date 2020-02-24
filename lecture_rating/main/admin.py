@@ -5,6 +5,7 @@ from .models import *
 
 admin.site.register(University)
 admin.site.register(Professor)
-# admin.site.register(User)
+# Profile 추가 User 대용
+admin.site.register(Profile)
 admin.site.register(LectureRatingBoard)
 admin.site.register(Lecture)

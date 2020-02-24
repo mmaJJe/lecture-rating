@@ -25,7 +25,6 @@ def find_college(request) :
 # 내가 원하는 강의 찾기
 # Subquery를 이용하여 내가 원하는 강의 찾기
 def search_lecture (request) :
-
     list_lecture = []
     type_name = request.POST.get("search_type")
     search_content = request.POST.get("search_content")
@@ -104,5 +103,24 @@ def lecture_detail(request, lecture_id) :
 def choose_college(request) :
     college = request.POST.get('college')
     request.session['college'] = college
-    
+
     return redirect("search_home")
+
+def write(request):
+    return render(request,"main/write.html")
+
+def create(request):
+    # user = User.objects.get(userid = request.GET['user'])
+    # lecture = Lecture.objects.get(name = request.GET['lecture'])
+    lectureRatingBoard = LectureRatingBoard()
+    lectureRatingBoard.user = request.user
+    lectureRatingBoard.lecture = lecture
+    lectureRatingBoard.tilte =  request.GET['title']
+    lectureRatingBoard.content =  request.GET['content']
+    lectureRatingBoard.pro_lecturePower = request.GET['pro_lecturePower']
+    lectureRatingBoard.test_level = request.GET['test_level']
+    lectureRatingBoard.project = request.GET['project']
+    lectureRatingBoard.homework= request.GET['homework']
+    lectureRatingBoard.stars = request.GET['stars']
+    lectureRatingBoard.save()
+    return redirect('search_home')
