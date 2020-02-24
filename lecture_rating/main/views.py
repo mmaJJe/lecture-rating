@@ -98,7 +98,7 @@ def lecture_detail(request, lecture_id) :
     posts = paginator.get_page(page)
     context = {'lec_li':lec_list, 'posts':posts, 'star' : star, 'lecture' : lecture}
 
-    return render(request, 'main/lecture_detail.html', context)
+    return render(request, "main/lecture_detail.html", context)
 
 def choose_college(request) :
     college = request.POST.get('college')
@@ -106,21 +106,4 @@ def choose_college(request) :
 
     return redirect("search_home")
 
-def write(request):
-    return render(request,"main/write.html")
 
-def create(request):
-    # user = User.objects.get(userid = request.GET['user'])
-    # lecture = Lecture.objects.get(name = request.GET['lecture'])
-    lectureRatingBoard = LectureRatingBoard()
-    lectureRatingBoard.user = request.user
-    lectureRatingBoard.lecture = lecture
-    lectureRatingBoard.tilte =  request.GET['title']
-    lectureRatingBoard.content =  request.GET['content']
-    lectureRatingBoard.pro_lecturePower = request.GET['pro_lecturePower']
-    lectureRatingBoard.test_level = request.GET['test_level']
-    lectureRatingBoard.project = request.GET['project']
-    lectureRatingBoard.homework= request.GET['homework']
-    lectureRatingBoard.stars = request.GET['stars']
-    lectureRatingBoard.save()
-    return redirect('search_home')

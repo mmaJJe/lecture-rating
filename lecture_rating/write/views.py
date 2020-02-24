@@ -1,14 +1,18 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import *
-from .models import *
+from main.models import *
 from . form import LectureRatingBoard_Post
+from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 # Create your views here.
 def write(request):
-    return render(request, 'write/write.html')
+    pk=request.GET['lecture_id']
+    lecture = Lecture.objects.get(lecture_id=pk)
+    name= lecture.name 
+    return render(request, 'write/write.html',{'name':name,'pk':pk})
 
 def LectureRatingBoard_Post2(request):
-
     if request.method =='POST':
         form = LectureRatingBoard_Post(request.POST)
         if form.is_valid():
@@ -19,15 +23,28 @@ def LectureRatingBoard_Post2(request):
         return render(request, "write/write.html", {"form" : form})  
     
 
+
+@csrf_exempt
 def create(request):
-    user = User.objects.get(userid = request.GET['user'])
-    lecture = Lecture.objects.get(name = request.GET['lecture'])
+    # user = User.objects.get(userid = request.GET['user'])
+    # lecture = Lecture.objects.get(name = request.GET['lecture'])
+    pk= request.POST['pk']
     lectureRatingBoard = LectureRatingBoard()
-    lectureRatingBoard.user = user
-    lectureRatingBoard.lecture = lecture
-    lectureRatingBoard.tilte =  request.GET['title']
-    lectureRatingBoard.content =  request.GET['content']
+    lectureRatingBoard.user = request.user
+    lectureRatingBoard.lecture = Lecture.objects.get(lecture_id=pk)
+    lectureRatingBoard.tilte =  request.POST['title']
+    lectureRatingBoard.content =  request.POST['content']
+    year = request.POST['semesteryear']
+    date = datetime.datetime(int(year), 3, 2)
+    lectureRatingBoard.semester_year = date
+    lectureRatingBoard.semester= request.POST
+    lectureRatingBoard.pro_lecturePower = request.POST['pro_lecturePower']
+    lectureRatingBoard.test_level = request.POST['test_level']
+    lectureRatingBoard.project = request.POST['project']
+    lectureRatingBoard.homework= request.POST['homework']
+    lectureRatingBoard.stars = request.POST['stars']
     lectureRatingBoard.save()
+    return redirect('home_page')
     
 def home(request):
     lectureRatingBoards=LectureRatingBoard.objects

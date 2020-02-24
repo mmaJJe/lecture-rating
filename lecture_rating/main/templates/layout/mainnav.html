@@ -10,11 +10,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
+
       {% if request.session.college %}
-      <li class="nav-item">
+      <li class="nav-item activate">
         <form action="{% url 'home_page' %}" method='GET'>
           <input type="hidden" value="college_del" name="college_del">
           <button class="nav-link btn btn-link">대학교 다시 선택</button>
@@ -22,10 +20,17 @@
       </li>
       {% endif %}
     </ul>
+    {% if request.user.is_authenticated %}
     {{request.user}}
     <a href="{% url 'logout'%}">
       <button class="nav-link btn btn-link">로그아웃</button>
     </a>
+    {%else%}
+        Guest
+      <a href="{% url 'login'%}">
+        <button class="nav-link btn btn-link">로그인</button>
+      </a>
+    {% endif %}
   </div>
 </nav>
 

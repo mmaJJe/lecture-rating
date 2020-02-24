@@ -7,8 +7,5 @@ urlpatterns = [
     path('college/choose/', views.choose_college, name="choose_college"),
     path('search/lecture/', views.search_lecture, name="search_lecture"),
     path('search/home/', views.search_home, name="search_home"),
-    path('lecture/detail/<str:lecture_id>/', views.lecture_detail, name="lecture_detail"),
-    path('search/write',views.write, name="write"),
-    path('search/create', views.create, name="create")
-
+    path('lecture/detail/<str:lecture_id>/', views.lecture_detail, name="lecture_detail")
 ]

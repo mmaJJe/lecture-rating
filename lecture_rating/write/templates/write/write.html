@@ -11,60 +11,103 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-            <form class="login100-form validate-form flex-sb flex-w">
+            <form class="login100-form validate-form flex-sb flex-w" action="{%url 'create' %}" method="POST">
+                {{pk}}
+                <input type="hidden" value='{{pk}}'' name="pk">
                 <span class="login100-form-title p-b-32">
                     강의평가 작성
                 </span>
-
+            
                 <span class="txt1 p-b-11">
                     강의
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
+                <div class="wrap-input100 validate-input m-b-36" >
+                    <input class="input100" type="text" name="lecturename" value="{{name}}" > 
                     <span class="focus-input100"></span>
                 </div>
                 <span class="txt1 p-b-11">
                     제목
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
+                <div class="wrap-input100 validate-input m-b-36" >
+                    <input class="input100" type="text" name="title" >
+                    <span class="focus-input100"></span>
+                </div>
+                <span class="txt1 p-b-11">
+                수강 연도
+            </span>
+            <div class="wrap-input100 validate-input m-b-36">
+                    <input class="input100" type="text" name="semesteryear" placeholder="ex. 2020">
                     <span class="focus-input100"></span>
                 </div>
                 <span class="txt1 p-b-11">
                     수강 학기
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
-                    <span class="focus-input100"></span>
-                </div>
+                <div class="wrap-input100 validate-input m-b-36">
+                        <input class="input100" type="text" name="semester" placeholder="ex.01">
+                        <span class="focus-input100"></span>
+                    </div>
                 <span class="txt1 p-b-11">
                     교수 강의력
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
-                    <span class="focus-input100"></span>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="pro_lecturePower">
+                        <option value="3">상</option>
+                        <option value="2">중</option>
+                        <option value="1">하</option>
+                    </select>
                 </div>
                 <span class="txt1 p-b-11">
                     조모임
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
-                    <span class="focus-input100"></span>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="pro_lecturePower">
+                        <option value="0">없음</option>
+                        <option value="1">보통</option>
+                        <option value="2">많음</option>
+                    </select>
                 </div>
                 <span class="txt1 p-b-11">
                     과제
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <input class="input100" type="text" name="username" >
-                    <span class="focus-input100"></span>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="homework">
+                        <option value="0">0회</option>
+                        <option value="1">1회</option>
+                        <option value="2">2회</option>
+                        <option value="3">3회</option>
+                    </select>
                 </div>
                 <span class="txt1 p-b-11">
-                    총평
+                    시험 난이도
                 </span>
-                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                    <textarea class="input100" name="username" ></textarea>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="test_level">
+                        <option value="0">시험없음</option>
+                        <option value="1">쉬움</option>
+                        <option value="2">중간</option>
+                        <option value="3">어려움</option>
+                    </select>
+                </div>
+                <span class="txt1 p-b-11">
+                    조모임
+                </span>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="project">
+                        <option value="0">없음</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3회이상</option>
+                    </select>
+                </div>
+                
+                      <span class="txt1 p-b-11">
+                          총평
+                      </span>
+                      <div class="wrap-input100 validate-input m-b-36">
+                    <textarea class="input100" name="content" ></textarea>
                     <span class="focus-input100"></span>
                 </div>
+                <div class="wrap-input100 m-b-36">   
                 <span class="txt1 p-b-11">
                     총점
                 </span>
@@ -76,13 +119,12 @@
                         <option  value="5">5</option>
                       </select>
                 </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Login
-                    </button>
+                <span class="txt1 p-b-11">
+                    <button type="submit">작성 완료</button>
+                </span>
+                      
+                    
                 </div>
-
             </form>
         </div>
     </div>
