@@ -25,7 +25,6 @@ def find_college(request) :
 # 내가 원하는 강의 찾기
 # Subquery를 이용하여 내가 원하는 강의 찾기
 def search_lecture (request) :
-
     list_lecture = []
     type_name = request.POST.get("search_type")
     search_content = request.POST.get("search_content")

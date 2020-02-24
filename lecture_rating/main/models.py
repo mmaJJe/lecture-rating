@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
 import random
 import string
 
@@ -26,10 +27,12 @@ class Lecture (models.Model) :
     def __str__ (self) :
         return self.name
 
-# class User(settings.AUTH_USER_MODEL) :
-#     admission = models.DateField(blank=True, null=True)
-#     university = models.ForeignKey(University, on_delete=models.CASCADE)
-#     major = models.CharField(blank=True)
+class Profile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    university = models.CharField(max_length=20)
+    major= models.CharField(max_length=25)
+    admission_year=models.CharField(max_length=4, default=0)
+
 
 class LectureRatingBoard(models.Model) :
     username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
