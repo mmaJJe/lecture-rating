@@ -20,7 +20,11 @@
                 <span class="login100-form-title p-b-32">
                     강의평가 작성
                 </span>
+<<<<<<< HEAD
 
+=======
+                {{request.user}}
+>>>>>>> 1688012596d1f9300ebe2e38ac80ea21b314c00b
                 <span class="txt1 p-b-11">
                     강의
                 </span>
@@ -49,9 +53,24 @@
                     수강 학기
                 </span>
                 <div class="wrap-input100 validate-input m-b-36">
+<<<<<<< HEAD
                     <input class="input100" type="text" name="semester"
                         value="{% if lectureRatingBoard %}{{lectureRatingBoard.semester}}{%endif%}" placeholder="ex.01">
                     <span class="focus-input100"></span>
+=======
+                        <input class="input100" type="text" name="semester" placeholder="ex.01">
+                        <span class="focus-input100"></span>
+                    </div>
+                <span class="txt1 p-b-11">
+                    교수 강의력
+                </span>
+                <div class="wrap-input100 validate-input m-b-36">
+                    <select class="form-control" id="pro_lecturePower" name="pro_lecturePower">
+                        <option value="1">상</option>
+                        <option value="2">중</option>
+                        <option value="3">하</option>
+                    </select>
+>>>>>>> 1688012596d1f9300ebe2e38ac80ea21b314c00b
                 </div>
                 <span class="txt1 p-b-11">
                     교수 강의력

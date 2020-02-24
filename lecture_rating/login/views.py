@@ -11,6 +11,7 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        print(user)
         if user is not None:
             django_login(request, user)
             datas= Profile.objects.get(user=request.user)
@@ -51,5 +52,6 @@ def signup(request):
         return render(request, "login/signup.html")
 
 def logout(request):
+    del request.session['college']
     django_logout(request)
     return render(request, 'main/home.html')

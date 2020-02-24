@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
+<<<<<<< HEAD
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import *
+=======
+from django.contrib.auth.models import User
+>>>>>>> 1688012596d1f9300ebe2e38ac80ea21b314c00b
 from main.models import *
 from . form import LectureRatingBoard_Post
 from django.views.decorators.csrf import csrf_exempt
@@ -32,11 +36,18 @@ def create(request):
     # lecture = Lecture.objects.get(name = request.GET['lecture'])
     pk= request.POST['pk']
     lectureRatingBoard = LectureRatingBoard()
-    lectureRatingBoard.username = request.user
+    lectureRatingBoard.username = User.objects.get(username=request.user) 
     lectureRatingBoard.lecture = Lecture.objects.get(lecture_id=pk)
     lectureRatingBoard.tilte =  request.POST['title']
     lectureRatingBoard.content =  request.POST['content']
     year = request.POST['semesteryear']
+    Passing= True
+    while  Passing:
+        if len(year)==4 and bool(int(year))==True:
+            Passing= False
+        else:
+            name= Lecture.objects.get(lecture_id=pk)
+            return render(request, 'write/write.html',{'name':name,'pk':pk})
     date = datetime.datetime(int(year), 3, 2)
     lectureRatingBoard.semester_year = date
     lectureRatingBoard.semester= request.POST
@@ -90,6 +101,8 @@ def update(request, pk):
     # else:
     #     form =  LectureRatingBoard_Post()
     #     return render(request, 'write/modify.html')  
+
+
 
    
     

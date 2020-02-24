@@ -42,7 +42,6 @@
             <button class="btn primary-btn btn-block">
                 글쓰기
             </button>
-            {{lecture.lecture_id}}
             <input type="hidden" name="lecture_id" value="{{lecture.lecture_id}}">
         </form>
 
@@ -95,9 +94,7 @@
                             <button type="submit" class="btn btn-link far fa-angry"><input type="hidden" name="not_reco"
                                     value="not_reco"></button> 비추천 {{lecture.not_reco}}
                             {% endif %}</p>
-                        <div class="post-btn">
-                            <a href="" class="primary-btn text-uppercase"></a>
-                        </div>
+                        <div class="post-btn"></div>
                     </div>
                 </div>
             </div>
@@ -156,8 +153,8 @@
     </div>
 </section>
 {% else %}
-<div class="container">
-    <h1>검색 결과가 없어요 ㅠㅠ</h1>
+<div class="container text-center my-5">
+    <h1>강의평가가 없습니다 ㅠㅠ</h1>
 </div>
 {%endif%}
 

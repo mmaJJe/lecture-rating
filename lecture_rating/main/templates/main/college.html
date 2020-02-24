@@ -10,7 +10,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">college</th>
                     <th scope="col">select</th>
                 </tr>
@@ -18,7 +17,6 @@
             <tbody>
                 {% for college in colleges %}
                 <tr>
-                    <th scope="row">{{ college.pk }}</th>
                     <td>{{college.name}}</td>
                     <td>
                         <form action="{% url 'choose_college' %}" method="POST">
