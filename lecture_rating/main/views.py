@@ -83,7 +83,6 @@ def search_home(request) :
 def choose_college(request) :
     college = request.POST.get('college')
     request.session['college'] = college
-<<<<<<< HEAD
 
     return redirect("search_home")
 
@@ -105,7 +104,3 @@ def create(request):
     lectureRatingBoard.stars = request.GET['stars']
     lectureRatingBoard.save()
     return redirect('search_home')
-=======
-    
-    return redirect("search_home")
->>>>>>> 1b444d93fe8baf4eea963481ea20a5a20242a254
