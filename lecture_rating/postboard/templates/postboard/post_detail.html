@@ -106,7 +106,8 @@
                     {% endif %}
 
                 </div>
-                <form action="{% url 'modify' content.lecture.lecture_id %}">
+                <form action="{% url 'modify' content.lecture.lecture_id %}" method="GET">
+                  <input type="hidden" name="board_id" value="{{content.pk}}">
                   <button type="submit" class="primary-btn text-uppercase">Modify</button>
                 </form>
               </div>

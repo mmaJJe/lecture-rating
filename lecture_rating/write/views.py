@@ -66,7 +66,7 @@ def home(request):
 def modify(request, pk):
     lectureRatingBoard_pk = pk
     lecture = Lecture.objects.get(lecture_id=lectureRatingBoard_pk)
-    lectureRatingBoard = LectureRatingBoard.objects.get(lecture=lecture)
+    lectureRatingBoard = LectureRatingBoard.objects.get(lecture=request.GET['board_id'])
     name= lecture.name 
     context = {"lectureRatingBoard" : lectureRatingBoard, 'name':name, 'pk' : lectureRatingBoard_pk}
     return render(request, 'write/modify.html', context)
