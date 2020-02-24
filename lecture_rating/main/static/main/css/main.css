@@ -811,7 +811,11 @@ legend {
 }
 
 .s003 {
+<<<<<<< HEAD
   min-height: 25vh;
+=======
+  min-height: 30vh;
+>>>>>>> 1b444d93fe8baf4eea963481ea20a5a20242a254
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
