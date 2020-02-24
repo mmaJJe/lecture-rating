@@ -44,29 +44,31 @@
           <div class="col-lg-10">
             <div class="">
               {% for post in posts %}
+              {% for key, star in stars.items %}
+              {% if key == post %}
               <div class="post-box mb-30">
                 <div class="d-flex">
                   <div>
                     <a href="#">
-                      <select class="stars">
-                        <option {% if post.stars == 1 %} selected {% endif %} value="1">1</option>
-                        <option {% if post.stars == 2 %} selected {% endif %} value="2">2</option>
-                        <option {% if post.stars == 3 %} selected {% endif %} value="3">3</option>
-                        <option {% if post.stars == 4 %} selected {% endif %} value="4">4</option>
-                        <option {% if post.stars == 5 %} selected {% endif %} value="5">5</option>
+                      <select class="stars" name="star">
+                        <option {% if star >= 1 %} selected {% endif %} value="1">1</option>
+                        <option {% if star >= 2 %} selected {% endif %} value="2">2</option>
+                        <option {% if star >= 3 %} selected {% endif %} value="3">3</option>
+                        <option {% if star >= 4 %} selected {% endif %} value="4">4</option>
+                        <option {% if star >= 5 %} selected {% endif %} value="5">5</option>
                       </select>
                     </a>
                   </div>
                   <div class="post-meta">
                     <div class="meta-head">
-                      <a href="{% url 'postdetail' post.id  %}">{{post.lecture.name}}</a>
+                      <a href="">{{post.name}}</a>
                     </div>
                     <div class="meta-details">
                       <ul>
                         <li>
                           <a href="#">
                             <span class="lnr lnr-calendar-full"></span>
-                            {{post.lecture.professor.name}}
+                            {{post.professor.name}}
                           </a>
                         </li>
                       </ul>
@@ -75,9 +77,11 @@
                 </div>
                 <p>{{post.content}}</p>
                 <div class="post-btn">
-                  <a href="{% url 'postdetail' post.id  %}" class="primary-btn text-uppercase">Read More</a>
+                  <a href="{% url 'lecture_detail' post.lecture_id %}" class="primary-btn text-uppercase">Read More</a>
                 </div>
               </div>
+              {% endif %}
+              {% endfor %}
               {% endfor %}
             </div>
           </div>
