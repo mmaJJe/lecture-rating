@@ -24,11 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'heu5=_$hd87j!s+l41=)g+=3&)nex-8_5o15c*t2&w98o-g%29')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False) )
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'ec2-52-79-241-43.ap-northeast-2.compute.amazonaws.com',
+    "*"
 ]
 
 
