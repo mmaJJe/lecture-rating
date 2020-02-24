@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 def home (request) :
     if request.GET.get('college_del') :
         del request.session['college']
+        request.session['college'].pop()
     if request.session.get('college') :
         return redirect("search_home")
 
@@ -55,7 +56,7 @@ def search_lecture (request) :
     # 강의 코드 즉, 강의 자체 코드에 대해서 검색
     elif type_name == "Lecture Code" :
         # results = LectureRatingBoard.objects.filter(lecture = Subquery(
-        results = Lecture.objects.filter(lecture_id=search_content, university=college).values('id')[:1]
+        results = Lecture.objects.filter(lecture_id=search_content, university=college).values('lecture_id')[:1]
         
         
         # lectures = Lecture.objects.filter(lecture_id=search_content, university=college)
@@ -90,14 +91,12 @@ def search_home(request) :
 
 def lecture_detail(request, lecture_id) :
     lecture = get_object_or_404(Lecture, lecture_id=lecture_id)
-    star = request.GET['star']
-    print(star)
     lec_list = LectureRatingBoard.objects.filter(lecture=lecture)
 
     paginator = Paginator(lec_list, 5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    context = {'lec_li':lec_list, 'posts':posts, 'star':star, 'lecture':lecture}
+    context = {'lec_li':lec_list, 'posts':posts, 'lecture':lecture}
 
     return render(request, "main/lecture_detail.html", context)
 
