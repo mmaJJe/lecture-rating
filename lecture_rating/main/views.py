@@ -90,13 +90,14 @@ def search_home(request) :
 
 def lecture_detail(request, lecture_id) :
     lecture = get_object_or_404(Lecture, lecture_id=lecture_id)
-    star = request.GET.get('star')
+    star = request.GET['star']
+    print(star)
     lec_list = LectureRatingBoard.objects.filter(lecture=lecture)
 
     paginator = Paginator(lec_list, 5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    context = {'lec_li':lec_list, 'posts':posts, 'star' : star, 'lecture' : lecture}
+    context = {'lec_li':lec_list, 'posts':posts, 'star':star, 'lecture':lecture}
 
     return render(request, "main/lecture_detail.html", context)
 

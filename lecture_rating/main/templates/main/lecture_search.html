@@ -82,7 +82,10 @@
                 </div>
                 <p>{{post.content}}</p>
                 <div class="post-btn">
-                  <a href="{% url 'lecture_detail' post.lecture_id %}" class="primary-btn text-uppercase">Read More</a>
+                  <form action="{% url 'lecture_detail' post.lecture_id %}" method="GET">
+                    <input type="hidden" value="{{star}}" name="star">
+                  <button type="submit" class="primary-btn text-uppercase">Read More</button>
+                </form>
                 </div>
               </div>
               {% endif %}

@@ -60,6 +60,7 @@
                             <div>
                                 <a href="#">
                                     <select class="stars" name="star">
+                                        {{star}}
                                         <option {% if star >= 1 %} selected {% endif %} value="1">1</option>
                                         <option {% if star >= 2 %} selected {% endif %} value="2">2</option>
                                         <option {% if star >= 3 %} selected {% endif %} value="3">3</option>
@@ -84,6 +85,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <p> {% if request.user.name == content.username %}
                             <i class="far fa-grin"></i> 추천 {{lecture.reco}}
                             <i class="far fa-angry"></i> 비추천 {{lecture.not_reco}}
@@ -117,11 +119,11 @@
                             <div>
                                 <a href="#">
                                     <select class="stars">
-                                        <option {% if post.stars == 1 %} selected {% endif %} value="1">1</option>
-                                        <option {% if post.stars == 2 %} selected {% endif %} value="2">2</option>
-                                        <option {% if post.stars == 3 %} selected {% endif %} value="3">3</option>
-                                        <option {% if post.stars == 4 %} selected {% endif %} value="4">4</option>
-                                        <option {% if post.stars == 5 %} selected {% endif %} value="5">5</option>
+                                        <option {% if post.stars >= 1 %} selected {% endif %} value="1">1</option>
+                                        <option {% if post.stars >= 2 %} selected {% endif %} value="2">2</option>
+                                        <option {% if post.stars >= 3 %} selected {% endif %} value="3">3</option>
+                                        <option {% if post.stars >= 4 %} selected {% endif %} value="4">4</option>
+                                        <option {% if post.stars >= 5 %} selected {% endif %} value="5">5</option>
                                     </select>
                                 </a>
                             </div>

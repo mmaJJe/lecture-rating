@@ -91,6 +91,7 @@
                 </div>
                 <br>
                 <div>
+
                     {% if request.user.name == content.username %}
                     <i class="far fa-grin"></i> 추천  {{content.lecture.reco}}
                     <i class="far fa-angry"></i> 비추천  {{content.lecture.not_reco}}
@@ -98,7 +99,11 @@
                     <button type="submit" class="btn btn-link far fa-grin"><input type="hidden" name="reco" value="reco"></button> 추천  {{content.lecture.reco}}
                     <button type="submit" class="btn btn-link far fa-angry"><input type="hidden" name="not_reco" value="not_reco"></button> 비추천  {{content.lecture.not_reco}}
                     {% endif %}
+
                 </div>
+                <form action="{% url 'modify' content.lecture.lecture_id %}">
+                  <button type="submit" class="primary-btn text-uppercase">Modify</button>
+                </form>
               </div>
             </div>
           </div>
