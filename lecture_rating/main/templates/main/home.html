@@ -53,14 +53,7 @@
                                 <button class="btn btn-secondary" type="submit">check!</button>
                             </div>
                             </form>
-                            {% if request.user == None %}
                             <br>
-<<<<<<< HEAD
-                            <a class="mb-3 link" href="{% url 'login' %}">로그인</a>
-                            <br>
-                            <a class="mb-3 link" href="{% url 'signup' %}">회원가입</a>
-                            {% endif %}
-=======
                             {%if request.user.is_authenticated %}
                             {{user}}
                             {{data}}
@@ -69,7 +62,6 @@
                             <br>
                             <a class="mb-3 link" href="{% url 'signup' %}">회원가입</a>
                             {%endif%}
->>>>>>> 3ef48a56ed596c960f7a4efbe49ff39b94954307
                     </div>
                     </div>
                 </div>
